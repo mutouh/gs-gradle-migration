@@ -1,0 +1,26 @@
+plugins {
+    alias libs.plugins.org.springframework.boot
+    alias libs.plugins.spring.dependency.management
+}
+
+// Managing Dependencies with the Dependency Management Plugin
+// https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/#managing-dependencies.dependency-management-plugin
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+dependencies {
+    implementation project(':multi-module-shop-common')
+
+    implementation libs.spring.boot.starter.web
+    implementation libs.spring.boot.starter.data.jpa
+    implementation libs.mysql.connector.j
+    implementation libs.mapstruct
+
+    testImplementation libs.spring.boot.starter.test
+
+    annotationProcessor libs.mapstruct.processor
+    annotationProcessor libs.lombok.mapstruct.binding
+}

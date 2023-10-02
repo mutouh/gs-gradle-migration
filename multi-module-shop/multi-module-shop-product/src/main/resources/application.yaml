@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /shop
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.0.0.197:3306/jasper?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: Admin123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+  # https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
+      schema-locations: classpath:sql/schema.sql
+      data-locations: classpath:sql/data.sql
