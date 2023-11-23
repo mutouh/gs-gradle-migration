@@ -10,6 +10,9 @@ allprojects {
     java {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
     }
 
     repositories {
@@ -17,25 +20,19 @@ allprojects {
         mavenCentral()
     }
 
-    apply plugin: 'java-library'
+    apply {
+        plugin 'java-library'
+    }
 
-    tasks.withType(JavaCompile) {
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = 'UTF-8'
     }
 
-    tasks.withType(Javadoc) {
+    tasks.withType(Javadoc).configureEach {
         options.encoding = 'UTF-8'
     }
 
     test {
         useJUnitPlatform()
-    }
-}
-
-subprojects {
-    dependencies {
-        compileOnly libs.lombok
-
-        annotationProcessor libs.lombok
     }
 }

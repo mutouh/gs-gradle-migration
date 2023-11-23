@@ -1,14 +1,14 @@
 plugins {
     alias libs.plugins.org.springframework.boot apply false
-    alias libs.plugins.spring.dependency.management
 }
 
-dependencyManagement {
-    imports {
-        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
-    }
-}
-
+// 3.2 Managing Dependencies with Gradle’s Bom Support
+// https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/#managing-dependencies.gradle-bom-support
 dependencies {
+    implementation platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+    compileOnly libs.lombok
     implementation libs.jakarta.persistence.api
+
+    annotationProcessor platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+    annotationProcessor libs.lombok
 }
